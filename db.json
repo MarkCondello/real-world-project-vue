@@ -1,0 +1,143 @@
+{
+  "events": [
+    {
+      "id": 5928101,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "animal welfare",
+      "organizer": "Adam",
+      "title": "Cat Cabaret",
+      "description": "Yay felines!",
+      "location": "Meow Town",
+      "date": "2019-01-03T21:54:00.000Z",
+      "time": "2:00",
+      "attendees": [
+        "Joe",
+        "Bob",
+        "Dick"
+      ]
+    },
+    {
+      "id": 8419988,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "animal welfare",
+      "organizer": "Adam",
+      "title": "Kitty Cluster",
+      "description": "Yay cats!",
+      "location": "Catlandia",
+      "date": "2019-01-31T22:09:00.000Z",
+      "time": "7:00",
+      "attendees": [
+        "Dick"
+      ]
+    },
+    {
+      "id": 4582797,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "animal welfare",
+      "organizer": "Adam",
+      "title": "Puppy Parade",
+      "description": "Yay pups!",
+      "location": "Puptown ",
+      "date": "2019-02-02T23:27:00.000Z",
+      "time": "1:00",
+      "attendees": [
+        "Sarah",
+        "Chloe"
+      ]
+    },
+    {
+      "user": {
+        "id": "abc123",
+        "name": "Adam Bashar"
+      },
+      "id": 64065,
+      "category": "housing",
+      "title": "Tidy ups",
+      "description": "Domestic life admin stuff",
+      "location": "Home",
+      "date": "2020-12-02T09:50:00.000Z",
+      "time": "2:00",
+      "attendees": []
+    },
+    {
+      "user": {
+        "id": "abc123",
+        "name": "Adam Bashar"
+      },
+      "id": 83271,
+      "category": "nature",
+      "title": "Plant trees",
+      "description": "",
+      "location": "In the forest",
+      "date": "2020-12-11T09:56:00.000Z",
+      "time": "12:00",
+      "attendees": []
+    },
+    {
+      "user": {
+        "id": "abc123",
+        "name": "Adam Bashar"
+      },
+      "id": 21652,
+      "category": "education",
+      "title": "Leaning Vuex",
+      "description": "Doing tutes on holidays",
+      "location": "At home",
+      "date": "2020-12-24T09:58:00.000Z",
+      "time": "3:00",
+      "attendees": []
+    },
+    {
+      "user": {
+        "id": "abc123",
+        "name": "Adam Bashar"
+      },
+      "id": 32499,
+      "category": "animal welfare",
+      "title": "Saving birds",
+      "description": "",
+      "location": "Outside",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "user": {
+        "id": "#019283",
+        "name": "Adam Bashar"
+      },
+      "id": 46947,
+      "category": "education",
+      "title": "Test organizer update",
+      "description": "Test 123",
+      "location": "At home in front fo the desk",
+      "date": "2020-12-18T09:48:00.000Z",
+      "time": "21:00",
+      "attendees": []
+    },
+    {
+      "user": {
+        "id": "#019283",
+        "name": "Adam Bashar"
+      },
+      "id": 81989,
+      "category": "education",
+      "title": "Test update organizer",
+      "description": "",
+      "location": "At home in front of the desk again",
+      "date": "2020-12-19T09:53:00.000Z",
+      "time": "21:00",
+      "attendees": [],
+      "organizer": "This Guy"
+    }
+  ]
+}
