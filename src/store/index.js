@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as user from './modules/user.js';
-import * as event from './modules/event.js';
+import user from './modules/user.js';
+import event from './modules/event.js';
 
 Vue.use(Vuex);
 
