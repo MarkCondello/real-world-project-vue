@@ -66,7 +66,7 @@ export default {
     //   this.$store.dispatch('updateCount', this.incrementBy)
     // },
     createFreshEventObject(){
-      const user = this.$store.state.user;
+      const user = this.$store.state.user.user;
       const id = Math.floor(Math.random() * 100000);
       return {
         user,
@@ -85,7 +85,7 @@ export default {
       this.$store.dispatch('updateOrganizer', this.organizer);
 
       this.$store
-      .dispatch('createEvent', this.event)
+      .dispatch('event/createEvent', this.event)
       .then(()=>{
         this.$router.push({
           name: 'event-show',
