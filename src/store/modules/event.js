@@ -68,7 +68,6 @@ export default {
         }) {
             EventService.getEvents(perPage, page)
                 .then(resp => {
-                    //console.log(`Total count: ${resp.headers['x-total-count']}`);
                     commit('SET_EVENTS', resp.data);
                     commit('SET_EVENTS_TOTAL', parseInt(resp.headers['x-total-count']))
                 })
@@ -78,7 +77,6 @@ export default {
                         message: `There was an error getting events: ${error.message}`,
                     }
                     dispatch('notification/add', notification, { root: true })
-
                     console.log(error)
                 })
         },
