@@ -36,18 +36,32 @@ export default {
         },
         //an action should always use a mutation and not change state directly; eg below: commit('ADD_EVENT')
         createEvent({
-            commit
+            commit,
+            dispatch
         }, event) {
             return EventService.postEvent(event)
                 .then(() => {
                     commit('ADD_EVENT', event)
+                    const notification = {
+                        type: 'success',
+                        message: `Your event has been created!`,
+                    }
+                    dispatch('notification/add', notification, {root: true})
                 })
-                .catch(() => {
+                .catch((error) => {
+                    const notification = {
+                        type: 'error',
+                        message: `There was an error creating your event: ${error.message}`,
+                    }
+
+                    dispatch('notification/add', notification, {root: true})
                     console.log("There was an error creating your event")
+                    throw(error)
                 })
         },
         fetchEvents({
-            commit
+            commit,
+            dispatch
         }, {
             perPage,
             page
@@ -58,11 +72,20 @@ export default {
                     commit('SET_EVENTS', resp.data);
                     commit('SET_EVENTS_TOTAL', parseInt(resp.headers['x-total-count']))
                 })
-                .catch(err => console.log(err))
+                .catch(error => {
+                    const notification = {
+                        type: 'error',
+                        message: `There was an error getting events: ${error.message}`,
+                    }
+                    dispatch('notification/add', notification, { root: true })
+
+                    console.log(error)
+                })
         },
         fetchEvent({
             commit,
-            getters
+            getters,
+            dispatch
         }, id) {
             var event = getters.getEventById(id);
             if (event) {
@@ -70,7 +93,14 @@ export default {
             } else {
                 EventService.getEvent(id)
                     .then(resp => commit('SET_EVENT', resp.data))
-                    .catch(err => console.log(err))
+                    .catch(error => {
+                        const notification = {
+                            type: 'error',
+                            message: `There was an error getting the event: ${error.message}`,
+                        }
+                        dispatch('notification/add', notification, { root: true })
+                        console.log(error)
+                    })
             }
         },
     },

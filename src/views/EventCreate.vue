@@ -1,8 +1,6 @@
 <template>
 <div>
-  <h1>Create an Event, {{ user.name }} {{user.id}}</h1>
-  <input type="number" v-model.number="incrementBy"/>
-  <!-- <button @click="incrementCount">Count: {{this.$store.state.count}}</button> -->
+  <h1>Create an Event {{ user.user.name }} {{user.user.id}}</h1>
   <form @submit.prevent="createEvent">
     <label>Name the organizer</label>
     <input type="text" v-model="event.organizer" />
@@ -82,7 +80,7 @@ export default {
       }
     },
     createEvent(){
-      this.$store.dispatch('updateOrganizer', this.organizer);
+      this.$store.dispatch('event/updateOrganizer', this.organizer);
 
       this.$store
       .dispatch('event/createEvent', this.event)
@@ -94,17 +92,11 @@ export default {
 
         this.event = this.createFreshEventObject();
       })
+      .catch(()=> {})
     }
   },
   computed: {
-    // getEvent(){
-    //   return this.$store.getters.getEventById
-    // },
-
-    // catLength(){
-    //   return this.$store.getters.catLength
-    // },
-    ...mapGetters(['getEventById', 'catLength']),
+    ...mapGetters(['event/getEventById', 'event/catLength']),
     ...mapState(['user',  ])
   },
 }
