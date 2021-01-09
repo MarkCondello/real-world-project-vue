@@ -4,8 +4,9 @@ import router from "./router";
 import store from "./store";
 //import BaseIcon from './components/BaseIcon';
 //Vue.component('BaseIcon', BaseIcon);
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import upperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
+import 'nprogress/nprogress.css';
 
 const requireComponent = require.context(
   // The relative path of the components folder
