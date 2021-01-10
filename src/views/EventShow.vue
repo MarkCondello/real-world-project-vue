@@ -28,6 +28,7 @@
 
 export default {
   props : [ 'id' ],
+  
   beforeRouteEnter(routeTo, routeFrom, next){
     nprogress.start();
     store.dispatch('event/fetchEvent', routeTo.params.id).then(() => {
