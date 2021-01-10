@@ -22,21 +22,31 @@
 </template>
 
 <script>
-  import { mapState,  mapActions } from 'vuex';
+  import { mapState } from 'vuex';
+  import nprogress from 'nprogress';
+  import store from '../store/index';
+
 export default {
   props : [ 'id' ],
+  beforeRouteEnter(routeTo, routeFrom, next){
+    nprogress.start();
+    store.dispatch('event/fetchEvent', routeTo.params.id).then(() => {
+      nprogress.done();
+      next();
+    });
+  },
   computed: {
     ...mapState({
       event: state => state.event.event
     }),
   },
-  created(){
-    //this.$store.dispatch('event/fetchEvent', this.id)
-    this.fetchEvent(this.id);
-  },
-  methods: {
-    ...mapActions( 'event', ['fetchEvent'] )
-  },
+  // created(){
+  //   //this.$store.dispatch('event/fetchEvent', this.id)
+  //   this.fetchEvent(this.id);
+  // },
+  // methods: {
+  //   ...mapActions( 'event', ['fetchEvent'] )
+  // },
 }
 </script>
 
