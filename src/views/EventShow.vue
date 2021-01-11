@@ -22,21 +22,26 @@
 </template>
 
 <script>
-  import { mapState,  mapActions } from 'vuex';
+  // import { mapState } from 'vuex';
 export default {
-  props : [ 'id' ],
-  computed: {
-    ...mapState({
-      event: state => state.event.event
-    }),
+  props : {
+    event: {
+      type: Object,
+      required: true,
+    }
   },
-  created(){
-    //this.$store.dispatch('event/fetchEvent', this.id)
-    this.fetchEvent(this.id);
-  },
-  methods: {
-    ...mapActions( 'event', ['fetchEvent'] )
-  },
+  // computed: {
+  //   ...mapState({
+  //     event: state => state.event.event
+  //   }),
+  // },
+  // created(){
+  //   //this.$store.dispatch('event/fetchEvent', this.id)
+  //   this.fetchEvent(this.id);
+  // },
+  // methods: {
+  //   ...mapActions( 'event', ['fetchEvent'] )
+  // },
 }
 </script>
 

@@ -66,7 +66,7 @@ export default {
             perPage,
             page
         }) {
-            EventService.getEvents(perPage, page)
+            return EventService.getEvents(perPage, page)
                 .then(resp => {
                     commit('SET_EVENTS', resp.data);
                     commit('SET_EVENTS_TOTAL', parseInt(resp.headers['x-total-count']))
@@ -87,10 +87,14 @@ export default {
         }, id) {
             var event = getters.getEventById(id);
             if (event) {
-                commit('SET_EVENT', event)
+                commit('SET_EVENT', event);
+                return event;
             } else {
-                EventService.getEvent(id)
-                    .then(resp => commit('SET_EVENT', resp.data))
+            return EventService.getEvent(id)
+                    .then(resp => {
+                        commit('SET_EVENT', resp.data);
+                        return resp.data;
+                    })
                     .catch(error => {
                         const notification = {
                             type: 'error',
