@@ -42,6 +42,7 @@
 <script>
 import Datepicker from "vuejs-datepicker";
 import { mapState, mapGetters } from 'vuex';
+import nprogress from 'nprogress';
 
 export default {
   components: {
@@ -60,9 +61,6 @@ export default {
     }
   },
   methods: {
-    // incrementCount(){
-    //   this.$store.dispatch('updateCount', this.incrementBy)
-    // },
     createFreshEventObject(){
       const user = this.$store.state.user.user;
       const id = Math.floor(Math.random() * 100000);
@@ -80,6 +78,7 @@ export default {
       }
     },
     createEvent(){
+      nprogress.start();
       this.$store.dispatch('event/updateOrganizer', this.organizer);
 
       this.$store
@@ -92,7 +91,9 @@ export default {
 
         this.event = this.createFreshEventObject();
       })
-      .catch(()=> {})
+      .catch(()=> {
+        nprogress.end();
+      })
     }
   },
   computed: {

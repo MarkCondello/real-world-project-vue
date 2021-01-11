@@ -7,6 +7,7 @@ export default {
         organizer: 'Everyone',
         eventsTotal: 0,
         event: {},
+        perPage: 3,
     },
     mutations: {
         ADD_EVENT(state, event) {
@@ -61,12 +62,12 @@ export default {
         },
         fetchEvents({
             commit,
-            dispatch
+            dispatch,
+            state,
         }, {
-            perPage,
             page
         }) {
-            return EventService.getEvents(perPage, page)
+            return EventService.getEvents(state.perPage, page)
                 .then(resp => {
                     commit('SET_EVENTS', resp.data);
                     commit('SET_EVENTS_TOTAL', parseInt(resp.headers['x-total-count']))

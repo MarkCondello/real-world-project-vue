@@ -10,30 +10,43 @@
 </template>
 
 <script>
- import EventCard from '../components/EventCard';
+import EventCard from '../components/EventCard';
 import { mapState } from 'vuex';
+import store from '../store/index';
 
+function getPageEvents(routeTo, next){
+  //console.log({routeTo})
+  const currentPage = parseInt(routeTo.query._page) || 1; // referencing the router query string
+  store.dispatch('event/fetchEvents', {
+    page: currentPage, 
+  }).then(()=>{
+    //send the page value prop to router
+    routeTo.params.page = currentPage;
+    next();
+  })
+}
 export default {
-  components:  {
-    EventCard 
+  props: {
+    //page is sent from vue router for pagination settings
+    page: {
+      type: Number,
+      required: true,
+    }
   },
- 
-  created(){
-    // console.log('page', this.page, 'query', this.$route.query._page)
-    this.$store.dispatch('event/fetchEvents', {
-      perPage: 3,
-      page: this.page, //computed prop referencing the router query string
-    }) 
+  components:  {
+    EventCard,
+  },
+  beforeRouteEnter(routeTo, routeFrom, next){
+    getPageEvents(routeTo, next)
+  },
+  beforeRouteUpdate(routeTo, routeFrom, next){
+    getPageEvents(routeTo, next)
   },
   computed: {
-    page(){
-      return parseInt(this.$route.query._page) || 1;
-    },
     ...mapState(['event', 'user' ]),
     totalPages(){
       return this.event.eventsTotal / 3;
     }
   },
- 
 }
 </script>

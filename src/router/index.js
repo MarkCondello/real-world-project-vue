@@ -15,7 +15,8 @@ const routes = [
   {
     path: "/events",
     name: "event-list",
-    component: EventList
+    component: EventList,
+    props: true,
   },
   {
     path: "/event/:id",
@@ -41,7 +42,6 @@ const routes = [
     component: User,
     props: true,
   },
-
   {
     path: "/vue-image-markup",
     name: "v-markup",

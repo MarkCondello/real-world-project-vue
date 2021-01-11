@@ -138,6 +138,21 @@
       "time": "21:00",
       "attendees": [],
       "organizer": "This Guy"
+    },
+    {
+      "user": {
+        "id": "#019283",
+        "name": "Adam"
+      },
+      "id": 50692,
+      "category": "education",
+      "title": "Progressing with nprogress",
+      "description": "Making progress bar none",
+      "location": "Study ",
+      "date": "2021-01-30T09:52:00.000Z",
+      "time": "21:00",
+      "attendees": [],
+      "organizer": "Foo barr bazza"
     }
   ]
 }
