@@ -84,26 +84,27 @@ export default {
         fetchEvent({
             commit,
             getters,
-            dispatch
+           // dispatch
         }, id) {
             var event = getters.getEventById(id);
             if (event) {
                 commit('SET_EVENT', event);
                 return event;
             } else {
+                
             return EventService.getEvent(id)
                     .then(resp => {
                         commit('SET_EVENT', resp.data);
                         return resp.data;
                     })
-                    .catch(error => {
-                        const notification = {
-                            type: 'error',
-                            message: `There was an error getting the event: ${error.message}`,
-                        }
-                        dispatch('notification/add', notification, { root: true })
-                        console.log(error)
-                    })
+                    // .catch(error => {
+                    //     const notification = {
+                    //         type: 'error',
+                    //         message: `There was an error getting the event: ${error.message}`,
+                    //     }
+                    //     dispatch('notification/add', notification, { root: true })
+                    //     console.log(error)
+                    // })
             }
         },
     },

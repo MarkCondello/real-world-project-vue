@@ -8,7 +8,9 @@ import VMulti from '../views/VMulti.vue';
 import VImageMarkup from '../views/VImageMarkup';
 import NProgress from 'nprogress';
 import store from '../store/index';
-
+import NotFound from '../views/NotFound.vue';
+import NetworkIssue from '../views/NetworkIssue.vue';
+ 
 Vue.use(VueRouter);
 
 const routes = [
@@ -29,6 +31,19 @@ const routes = [
         routeTo.params.event = event;
         next();
       })
+      .catch((error) => {
+        if(error.response && error.response === "400")
+          next({ name: '404', params: {resource: 'event'}})
+        else {
+          next({ name: '500', params: {resource: error}})
+        }
+        // const notification = {
+        //     type: 'error',
+        //     message: `There was an error getting the event: ${error.message}`,
+        // }
+        // dispatch('notification/add', notification, { root: true })
+        console.log(error)
+    })
     }
   },
   {
@@ -52,12 +67,23 @@ const routes = [
     name: 'v-multi',
     component: VMulti,
   },
- 
-  //redirect option
   {
-    path: "/about",
-    redirect: {name : "event-list"}
-  }
+    path: "/404",
+    name: "404",
+    component: NotFound,
+    props: true,
+  },
+  {
+    path: "/500",
+    name: "500",
+    component: NetworkIssue,
+    props: true,
+  },
+    //redirect all non specified urls
+    {
+      path: "*",
+      redirect: {name : "404", "params": { resource: "page"}}
+    },
 ];
 
 const router = new VueRouter({
