@@ -28,3 +28,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 json-server --watch db.json
 ```
+
+To test the Nprogress bar we can simulate a slower response using the command below
+```
+json-server -d 15000 db.json
+```
