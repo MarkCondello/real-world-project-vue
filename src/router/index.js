@@ -19,6 +19,24 @@ const routes = [
     name: "event-list",
     component: EventList,
     props: true,
+
+    beforeEnter(routeTo, routeFrom, next){
+      store.dispatch('event/fetchEvents', routeTo.params.id)
+      .then((event)=>{
+        routeTo.params.event = event;
+        next();
+      })
+      .catch((error) => {
+        if(error.response && error.response === "400")
+          next({ name: '404', params: {resource: 'events'}})
+        else {
+          next({ name: '500', params: {resource: error}})
+        }
+ 
+        console.log(error)
+    })
+    }
+
   },
   {
     path: "/event/:id",

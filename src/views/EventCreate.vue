@@ -2,18 +2,19 @@
 <div>
   <h1>Create an Event {{ user.user.name }} {{user.user.id}}</h1>
   <form @submit.prevent="createEvent">
+
     <label>Name the organizer</label>
     <input type="text" v-model="event.organizer" />
+     <base-select labelName="Select a Category" v-model="event.category" :options="categories" />
 
-    <label>Select a category</label>
+    <!-- <label>Select a category</label>
     <select v-model="event.category">
       <option v-for="cat in categories" :key="cat">{{ cat }}</option>
-    </select>
+    </select> -->
     <h3>Name & describe your event</h3>
-    <div class="field">
-      <label>Title</label>
-      <input v-model="event.title" type="text" placeholder="Add an event title"/>
-    </div>
+
+    <base-field labelName="Title" v-model="event.title" placeholder="Add an event title"  />
+
     <div class="field">
       <label>Description</label>
       <input v-model="event.description" type="text" placeholder="Add a description"/>
@@ -28,12 +29,14 @@
       <label>Date</label>
       <datepicker v-model="event.date" placeholder="Select a date"/>
     </div>
-    <div class="field">
+     <base-select labelName="Select a time" v-model="event.time" :options="times" />
+
+    <!-- <div class="field">
       <label>Select a time</label>
       <select v-model="event.time">
         <option v-for="time in times" :key="time">{{ time }}</option>
       </select>
-    </div>
+    </div> -->
     <input type="submit" class="button -fill-gradient" value="Submit"/>
   </form>
 </div>
@@ -43,11 +46,11 @@
 import Datepicker from "vuejs-datepicker";
 import { mapState, mapGetters } from 'vuex';
 import nprogress from 'nprogress';
-
+  
 export default {
   components: {
-    Datepicker,
-  },
+    Datepicker
+    },
   data() {
     const times = [];
     for(let i = 1; i < 24; i++){
