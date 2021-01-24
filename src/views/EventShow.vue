@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
+      <span class="eyebrow">@{{ event.time }} on {{ event.date | formatDate }}</span>
       <h1 class="title">{{ event.title }}</h1>
       <h5>Organized by {{ event.organizer ? event.organizer : 'Noone'}}</h5>
       <h5>Category: {{ event.category }}</h5>
@@ -30,6 +30,7 @@ export default {
       required: true,
     }
   },
+
   // computed: {
   //   ...mapState({
   //     event: state => state.event.event
