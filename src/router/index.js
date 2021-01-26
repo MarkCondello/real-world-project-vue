@@ -56,11 +56,6 @@ const routes = [
         else {
           next({ name: '500', params: {resource: error}})
         }
-        // const notification = {
-        //     type: 'error',
-        //     message: `There was an error getting the event: ${error.message}`,
-        // }
-        // dispatch('notification/add', notification, { root: true })
         console.log(error)
     })
     }
@@ -92,7 +87,7 @@ const routes = [
     component: Example,
   },
   {
-    path: "/404",
+    path: "/404-:resource",
     name: "404",
     component: NotFound,
     props: true,
@@ -104,10 +99,10 @@ const routes = [
     props: true,
   },
     //redirect all non specified urls
-    {
-      path: "*",
-      redirect: {name : "404", "params": { resource: "page"}}
-    },
+  {
+    path: "*",
+    redirect: {name : '404', params: { resource: "page"}}
+  },
 ];
 
 const router = new VueRouter({
